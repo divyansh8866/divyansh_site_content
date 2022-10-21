@@ -1,19 +1,19 @@
 ---
 weight: 1
-title: "Theme Documentation - Basics"       # <<< Change here
+title: "Leetcode - Finding piviot index"       # <<< Change here
 date: 2022-10-21T16:33:23+00:00
-lastmod: 2020-03-06T21:29:01+08:00
+lastmod: 2022-10-21T16:33:23+00:00
 draft: false                
 author: "Divyansh"
-authorLink: "https://dillonzq.com"
+authorLink: "https://divyanshpatel.com"
 description: "Change Me"                    # <<< Change here
 images: []
 resources:
 - name: "featured-image"
   src: "featured-image.jpg"
 
-tags: ["installation", "configuration"]     # <<< Change here
-categories: ["documentation"]               # <<< Change here
+tags: ["python", "leetcode"]     # <<< Change here
+categories: ["Leetcode"]               # <<< Change here
 
 lightgallery: true
 
@@ -21,7 +21,7 @@ toc:
   auto: false
 ---
 
-# Finding piviot index `python`
+# Finding piviot index
 `Python ` `leetcode` `data structure` `algorithems`
 
 ---
