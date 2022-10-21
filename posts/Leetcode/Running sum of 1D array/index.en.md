@@ -21,6 +21,8 @@ toc:
   auto: false
 ---
 
+![leetcode](leetcode.jpeg)
+
 # Running sum of 1D array
 `Python ` `leetcode` `data structure` `algorithems`
 

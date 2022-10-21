@@ -21,6 +21,8 @@ toc:
   auto: false
 ---
 
+![leetcode](leetcode.jpeg)
+
 # Finding piviot index
 `Python ` `leetcode` `data structure` `algorithems`
 
