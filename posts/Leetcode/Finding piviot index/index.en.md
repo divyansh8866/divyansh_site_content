@@ -6,7 +6,7 @@ lastmod: 2022-10-21T16:33:23+00:00
 draft: false                
 author: "Divyansh"
 authorLink: "https://divyanshpatel.com"
-description: "Change Me"                    # <<< Change here
+description: "This post will explain you potential solution for leetcode problem."
 images: []
 resources:
 - name: featured-image
@@ -21,7 +21,7 @@ toc:
   auto: false
 ---
 
-![leetcode](leetcode.jpeg)
+<!--more-->
 
 # Finding piviot index
 `Python ` `leetcode` `data structure` `algorithems`
