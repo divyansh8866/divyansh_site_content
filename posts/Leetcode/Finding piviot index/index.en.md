@@ -20,7 +20,7 @@ lightgallery: true
 toc:
   auto: false
 ---
-
+![leetcode](leetcode.png)
 # Finding piviot index
 `Python ` `leetcode` `data structure` `algorithems`
 
