@@ -10,7 +10,7 @@ description: "Change Me"                    # <<< Change here
 images: []
 resources:
 - name: "Leetcode"
-  src: "leetcode.png"
+  src: "leetcode.jpeg"
 
 tags: ["python", "leetcode"]     # <<< Change here
 categories: ["Leetcode"]               # <<< Change here
