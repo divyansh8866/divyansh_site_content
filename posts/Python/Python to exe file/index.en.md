@@ -1,6 +1,6 @@
 ---
 weight: 1
-title: "Create .exe from .py file"     
+title: "Python - Create .exe from .py file"     
 date: 2022-10-22T17:52:53+00:00
 lastmod: 2022-10-22T17:52:53+00:00
 draft: false                
