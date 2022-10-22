@@ -45,11 +45,10 @@ pyinstaller --onefile <file_name>.py
 ```
 ### Step 3 : you will see additional files generated, To find the executable file, ___open the dist folder___.
 
-Now you have stand alone executable file. Enjoy 😉
+Now you have stand alone executable file. Enjoy...
 ----
 {{< admonition type=tip title="Reference" open=false >}}
-{{< link href="https://pyinstaller.org/en/stable/" content=pyinstaller website >}}
-{{< link href="https://pypi.org/project/pyinstaller/" content=pip package >}}
+[pyinstaller website](https://pyinstaller.org/en/stable/) 
+
+[pip package](https://pypi.org/project/pyinstaller/)
 {{< /admonition >}}
-
-
