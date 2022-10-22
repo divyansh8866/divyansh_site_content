@@ -7,10 +7,10 @@ MD_FILE_HEADER = """---
 weight: 1
 title: "Theme Documentation - Basics"       # <<< Change here
 date: {}
-lastmod: 2020-03-06T21:29:01+08:00
+lastmod: {}
 draft: false                
 author: "Divyansh"
-authorLink: "https://dillonzq.com"
+authorLink: "https://divyanshpatel.com"
 description: "Change Me"                    # <<< Change here
 images: []
 resources:
@@ -26,7 +26,11 @@ toc:
   auto: false
 ---
 
-""".format(utc_dt.isoformat(timespec='seconds'))
+<!--more-->
+
+""".format(utc_dt.isoformat(timespec='seconds'),
+           utc_dt.isoformat(timespec='seconds')
+           )
 
 
 os.mkdir(FOLDER_NAME)
