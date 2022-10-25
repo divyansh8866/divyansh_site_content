@@ -11,6 +11,10 @@ math:
   enable: true
 ---
 
+{{< style "img { height: 1.25rem; width: 1.25rem;}" >}}
+![profile pic](about.png)
+{{< /style >}}
+
 I’m living the dream.
 
 I’ve always been a great problem solver, an independent introvert, and a technophile obsessed with the latest devices. Today, I’m working from home as a software developer for JobTarget, Inc., and I get to show off all these elements of who I am.
