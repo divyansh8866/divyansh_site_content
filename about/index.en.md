@@ -11,9 +11,7 @@ math:
   enable: true
 ---
 
-{{< style "img { height: 1.25rem;}" >}}
-![profile pic](about.png)
-{{< /style >}}
+![mypic](about.jpg)
 
 I’m living the dream.
 
