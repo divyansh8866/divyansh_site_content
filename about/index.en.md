@@ -28,10 +28,9 @@ I’m familiar with a variety of programming languages and technologies, includi
 **Learning Platform  :** `LinkedIn-Learning` `Udemy` 
 
 
-{{<table “table table-striped table-bordered">}}
 |       |         |         |
 |-------|---------|---------|
 |![](certificates/1.png) | ![](certificates/2.png) | ![](certificates/3.png) |
 |![](certificates/4.png) | ![](certificates/5.png)||
-{{</table>}}
+
 
