@@ -29,7 +29,7 @@ I’m familiar with a variety of programming languages and technologies, includi
 
 Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
-![](certificates/1.png)  |  ![](certificates/2.png)
+![](certificates/test.png)  |  ![](certificates/test.png)
 
 
 
