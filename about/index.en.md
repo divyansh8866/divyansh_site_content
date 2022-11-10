@@ -27,6 +27,6 @@ I’m familiar with a variety of programming languages and technologies, includi
 # Certified Courses
 **Learning Platform  :** `LinkedIn-Learning` `Udemy` 
 
-![this is pdf](certi.html)
+[this is pdf](certi.html)
 
 
