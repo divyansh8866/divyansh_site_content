@@ -27,6 +27,9 @@ I’m familiar with a variety of programming languages and technologies, includi
 # Certified Courses
 **Learning Platform  :** `LinkedIn-Learning` `Udemy` 
 
-[this is pdf](certi.html)
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](certificates/1.png)  |  ![](certificates/2.png)
+
 
 
