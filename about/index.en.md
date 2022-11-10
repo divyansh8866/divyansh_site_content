@@ -27,10 +27,12 @@ I’m familiar with a variety of programming languages and technologies, includi
 # Certified Courses
 **Learning Platform  :** `LinkedIn-Learning` `Udemy` 
 
-
-|       |         |         |
-|-------|---------|---------|
-|![](certificates/1.png) | ![](certificates/2.png) | ![](certificates/3.png) |
-|![](certificates/4.png) | ![](certificates/5.png)||
+{{< style "img { height: 3.25rem; }" >}}
+[](certificates/1.png)
+[](certificates/2.png)
+[](certificates/3.png)
+[](certificates/4.png)
+[](certificates/5.png)
+{{< /style >}}
 
 
