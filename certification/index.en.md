@@ -13,7 +13,7 @@ math:
 
 # Certification
 
-{{< style "img { height: 22.25rem; }" >}} 
+{{< style "img { height: 20.25rem; }" >}} 
 ![](certificates/1.png) 
 ![](certificates/2.png) 
 ![](certificates/3.png) 
