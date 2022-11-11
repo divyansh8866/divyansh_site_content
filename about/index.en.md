@@ -11,7 +11,7 @@ math:
   enable: true
 ---
 
-![mypic](about.png)
+{{< style "img { height: 10.25rem; }" >}} ![mypic](about.png) {{< /style >}} 
 
 I’m living the dream.
 
@@ -22,14 +22,6 @@ I started learning to code when I was a teenager, though it was always more of a
 Since then, I’ve worked on countless freelance projects and have been involved with a handful of notable startups. Today, I’m working as a junior developer with the amazing team at JobTarget, Inc., and am getting into Cloud and data science on my own time.
 
 I’m familiar with a variety of programming languages and technologies, including Python, C, C++, SQL, AWS, Serverless Framework but I’m always adding new skills to my repertoire. I’m also eager to meet other software engineers in the area, so feel free to connect!
-
-
-# Certified Courses
-**Learning Platform  :** `LinkedIn-Learning` `Udemy` 
-
-Solarized dark             |  Solarized Ocean
-:-------------------------:|:-------------------------:
-![](certificates/test.png)  |  ![](certificates/test.png)
 
 
 
