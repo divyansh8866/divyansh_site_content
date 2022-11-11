@@ -13,16 +13,11 @@ math:
 
 # Certification
 
-| | | |
+| **LinkedIn Learning** | | |
 |-|-|-|
 |{{< style "img { height: 11.25rem;}" >}} 
-![](certificates/t.png){{< /style >}} |{{< style "img { height: 10.25rem; }" >}} 
-![](certificates/t.png) {{< /style >}} | {{< style "img { height: 10.25rem; }" >}} ![](certificates/t.png){{< /style >}} 
+![](certificates/1.png){{< /style >}} |{{< style "img { height: 11.25rem; }" >}} 
+![](certificates/2.png) {{< /style >}} | {{< style "img { height: 11.25rem; }" >}} ![](certificates/3.png){{< /style >}} 
+|{{< style "img { height: 11.25rem; }" >}} ![](certificates/4.png){{< /style >}} |{< style "img { height: 11.25rem; }" >}} ![](certificates/5.png){{< /style >}} |
 
-
-
-{{< style "img { height: 10.25rem; }" >}} 
-![](certificates/t.png)
-![](certificates/t.png) 
-{{< /style >}} 
 
