@@ -3,7 +3,7 @@ weight: 1
 title: "PySpark - Introduction"      
 date: 2022-10-30T18:05:58+00:00
 lastmod: 2022-10-30T18:05:58+00:00
-draft: false                
+draft: true                
 author: "Divyansh"
 authorLink: "https://divyanshpatel.com"
 description: "This post will give you an introduction to PySpark"                 

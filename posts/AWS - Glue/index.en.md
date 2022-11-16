@@ -1,6 +1,6 @@
 ---
 weight: 1
-title: "AWS - Glue"       
+title: "AWS - Glue (Introduction)"       
 date: 2022-11-16T23:29:31+00:00
 lastmod: 2022-11-16T23:29:31+00:00
 draft: false                
@@ -12,8 +12,8 @@ resources:
 - name: "featured-image"
   src: "featured-image.jpg"
 
-tags: ["AWS", "Glue"]     # <<< Change here
-categories: ["documentation"]               # <<< Change here
+tags: ["AWS", "Glue"]    
+categories: ["documentation"]              
 
 lightgallery: true
 
@@ -31,20 +31,21 @@ AWS Glue is a fully managed ETL (Extract Transform and Load) service offered by 
 
 AWS Glue consists of three major components as shown below.
 
-```mermaid
+{{< mermaid >}}
 graph TD
     A[AWS Glue]
     A --> B[Central metadata repository]
     A --> C[ETL engine]
     A --> D[Flexible scheduler]           
-```
+{{< /mermaid >}}
+
 **Meta Data Repository** : Meta data repo will not store raw datas in it but instead it stores schema and other metadata related to the structure of data which is stored in Databases such as S3, DynamoDB etc. For example :
-```mermaid
+
+{{< mermaid >}}
 graph LR 
     A[(S3 Database)]
     A--->|run glue crawler|B[Glue Database]
-
-```
+{{< /mermaid >}}
 
 **ETL Engine** : ETL engine is used for Extracting data from a source and perform different types of transform function on data and finaly load data into data warehouse or any database as per preferance. 
 
