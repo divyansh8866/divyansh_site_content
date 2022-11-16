@@ -51,6 +51,8 @@ graph LR
 
 **Flexible scheduler** : This allows ETL jobs to be scheduled on CRON.
 
+---
+
 ## AWS Glue services 
 
 There are many different services under AWS Glue. Naming and ordering of services might change in future. 
