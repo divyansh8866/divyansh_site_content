@@ -47,13 +47,16 @@ In this section we will be looking at Database in AWS Glue service. \
 
 ### Prerequisites
 **Note:** Please run this command to set AWS credentials in Serverless framework.
+
 ```
 serverless config credentials --provider aws --key <KEY> --secret <SECRET_KEY> -o
 ```
+
 Following should be added in to `.env` file in same directory as `serverless.yml` file.
 ``` 
 SERVICE_NAME=glue-database
 ```
+
 Serverless Code 
 ``` yml
 
@@ -82,9 +85,9 @@ Command to run serverless file (please run from same directory as serverless.yml
  serverless deploy
 ```
 
-{{< admonition type=tip title="Tip" open=false >}}
+<!-- {{< admonition type=tip title="Tip" open=false >}}
 Change `serverless` to `sls` in windows path variables to make deployment command easier.
-{{< /admonition >}}
+{{< /admonition >}} -->
 
 ---
 
@@ -95,15 +98,15 @@ Change `serverless` to `sls` in windows path variables to make deployment comman
 The metadata definition for the data in a data store is a table in the AWS Glue Data Catalog. You can manually create a table in the AWS Glue console or generate a table when you run a crawler. The values of your table's metadata are shown in the Tables list in the AWS Glue console. When you develop ETL (extract, transform, and load) jobs, you use table definitions to identify sources and targets.
 
 ## Tables Configuration (Web Console)
-<!-- 
-{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/1.png) {{< /style >}} 
-{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/2.png) {{< /style >}} 
 
-{{< admonition type=tip title="Tip" open=false >}}
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/1.png) {{< /style >}} 
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/2.png) {{< /style >}} 
+
+<!-- {{< admonition type=tip title="Tip" open=false >}}
 If the Data source is in another account, you might need to give cross account permission.
-{{< /admonition >}}
+{{< /admonition >}} -->
 
-{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/3.png) {{< /style >}} 
-{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/4.png) {{< /style >}} 
-{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/5.png) {{< /style >}}  -->
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/3.png) {{< /style >}} 
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/4.png) {{< /style >}} 
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/5.png) {{< /style >}} 
 
