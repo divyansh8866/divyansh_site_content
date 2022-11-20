@@ -85,7 +85,9 @@ Command to run serverless file (please run from same directory as serverless.yml
  serverless deploy
 ```
 
-
+{{< admonition type=tip title="Tip" open=false >}}
+Change `serverless` to `sls` in windows path variables to make deployment command easier.
+{{< /admonition >}}
 
 ---
 
@@ -97,9 +99,10 @@ The metadata definition for the data in a data store is a table in the AWS Glue 
 
 ## Tables Configuration (Web Console)
 
-{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/1.png) {{< /style >}} 
-{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/2.png) {{< /style >}} 
-{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/3.png) {{< /style >}} 
-{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/4.png) {{< /style >}} 
-{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/5.png) {{< /style >}} 
+
+
+{{< admonition type=tip title="Tip" open=false >}}
+If the Data source is in another account, you might need to give cross account permission.
+{{< /admonition >}}
+
 
