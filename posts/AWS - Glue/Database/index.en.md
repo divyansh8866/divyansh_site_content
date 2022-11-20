@@ -55,7 +55,7 @@ Following should be added in to `.env` file in same directory as `serverless.yml
 SERVICE_NAME=glue-database
 ```
 Serverless Code 
-``` yaml
+``` yml
 
 service: ${env:SERVICE_NAME}
 frameworkVersion: '3'
@@ -75,10 +75,12 @@ resources: # CloudFormation template syntax
           # LocationUri: String   #Optional
           Name: test_databavse
 ```
+
 Command to run serverless file (please run from same directory as serverless.yml)
+
 ```
  serverless deploy
- ```
+```
 
 {{< admonition type=tip title="Tip" open=false >}}
 Change `serverless` to `sls` in windows path variables to make deployment command easier.
@@ -88,12 +90,12 @@ Change `serverless` to `sls` in windows path variables to make deployment comman
 
 # Tables
 
-{{< style "img { height: 15.25rem; }" >}} ![glue tables](table.jpg) {{< /style >}} 
+![glue tables](table.jpg)
 
 The metadata definition for the data in a data store is a table in the AWS Glue Data Catalog. You can manually create a table in the AWS Glue console or generate a table when you run a crawler. The values of your table's metadata are shown in the Tables list in the AWS Glue console. When you develop ETL (extract, transform, and load) jobs, you use table definitions to identify sources and targets.
 
 ## Tables Configuration (Web Console)
-
+<!-- 
 {{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/1.png) {{< /style >}} 
 {{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/2.png) {{< /style >}} 
 
@@ -103,5 +105,5 @@ If the Data source is in another account, you might need to give cross account p
 
 {{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/3.png) {{< /style >}} 
 {{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/4.png) {{< /style >}} 
-{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/5.png) {{< /style >}} 
+{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/5.png) {{< /style >}}  -->
 
