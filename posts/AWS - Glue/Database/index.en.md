@@ -133,4 +133,5 @@ resources: # CloudFormation template syntax
 If the Data source is in another account, you might need to give cross account permission.
 {{< /admonition >}}
 
-
+**Reference**
+> [AWS Cloud Formation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html)
