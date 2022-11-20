@@ -33,7 +33,7 @@ In this section we will be looking at Database in AWS Glue service. \
 ---
 
 # Database
-## Configuration (Web Console)
+## Database Configuration (Web Console)
 
 ![Web Console](config.png)
 
@@ -43,7 +43,7 @@ In this section we will be looking at Database in AWS Glue service. \
 
 ---
 
-## Configuration (serverless)
+## Database Configuration (serverless)
 
 ### Prerequisites
 **Note:** Please run this command to set AWS credentials in Serverless framework.
@@ -88,19 +88,20 @@ Change `serverless` to `sls` in windows path variables to make deployment comman
 
 # Tables
 
-{{< style "img { height: 19.25rem; }" >}} ![glue tables](table.jpg) {{< /style >}} 
+{{< style "img { height: 15.25rem; }" >}} ![glue tables](table.jpg) {{< /style >}} 
 
 The metadata definition for the data in a data store is a table in the AWS Glue Data Catalog. You can manually create a table in the AWS Glue console or generate a table when you run a crawler. The values of your table's metadata are shown in the Tables list in the AWS Glue console. When you develop ETL (extract, transform, and load) jobs, you use table definitions to identify sources and targets.
 
-## Configuration (Web Console)
+## Tables Configuration (Web Console)
 
-![glue tables](web-consol/1.png)
-![glue tables](web-consol/2.png)
+{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/1.png) {{< /style >}} 
+{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/2.png) {{< /style >}} 
 
 {{< admonition type=tip title="Tip" open=false >}}
 If the Data source is in another account, you might need to give cross account permission.
 {{< /admonition >}}
 
-![glue tables](web-consol/3.png)
-![glue tables](web-consol/4.png)
-![glue tables](web-consol/5.png)
+{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/3.png) {{< /style >}} 
+{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/4.png) {{< /style >}} 
+{{< style "img { height: 15.25rem; }" >}} ![glue tables](web-consol/5.png) {{< /style >}} 
+
