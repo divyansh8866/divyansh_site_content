@@ -84,3 +84,22 @@ Command to run serverless file (please run from same directory as serverless.yml
 ```
  serverless deploy
 ```
+
+
+
+---
+
+# Tables
+
+![glue tables](table.jpg)
+
+The metadata definition for the data in a data store is a table in the AWS Glue Data Catalog. You can manually create a table in the AWS Glue console or generate a table when you run a crawler. The values of your table's metadata are shown in the Tables list in the AWS Glue console. When you develop ETL (extract, transform, and load) jobs, you use table definitions to identify sources and targets.
+
+## Tables Configuration (Web Console)
+
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/1.png) {{< /style >}} 
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/2.png) {{< /style >}} 
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/3.png) {{< /style >}} 
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/4.png) {{< /style >}} 
+{{< style "img { height: 12.25rem; }" >}} ![glue tables](web-consol/5.png) {{< /style >}} 
+
