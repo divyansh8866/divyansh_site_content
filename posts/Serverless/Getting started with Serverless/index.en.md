@@ -85,3 +85,9 @@ serverless deploy
 That's it! You should now have a working serverless application on AWS. You can test your function by sending an HTTP request to the URL provided by the Serverless Framework after the deployment is complete.
 
 
+----
+
+{{< admonition type=tip title="Reference" open=false >}}
+[Serverless website](https://www.serverless.com) 
+
+{{< /admonition >}}
