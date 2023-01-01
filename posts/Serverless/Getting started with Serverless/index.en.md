@@ -13,7 +13,7 @@ resources:
   src: "featured-image.jpg"
 
 tags: ["serverless", "aws"]     # <<< Change here
-categories: ["documentation"]               # <<< Change here
+categories: ["serverless"]               # <<< Change here
 
 lightgallery: true
 

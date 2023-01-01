@@ -1,0 +1,1342 @@
+<!DOCTYPE html><!-- Last Published: Fri Dec 16 2022 22:47:41 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="wb.serverless.com" data-wf-page="60bf43f2a42c5000817a4a9d" data-wf-site="60acbb950c4d6606963e1fed" lang="en"><head><meta charset="utf-8"/><title>Serverless: Develop &amp; Monitor Apps On AWS Lambda</title><meta content="Easily develop and monitor auto-scaling applications on AWS Lambda, API Gateway, DynamoDB, etc., with the Serverless Framework and Serverless Monitoring Dashboard." name="description"/><meta content="Serverless: Develop &amp; Monitor Apps On AWS Lambda" property="og:title"/><meta content="Easily develop and monitor auto-scaling applications on AWS Lambda, API Gateway, DynamoDB, etc., with the Serverless Framework and Serverless Monitoring Dashboard." property="og:description"/><meta content="https://assets.serverless-extras.com/website/general/social-card-serverless-company.png" property="og:image"/><meta content="Serverless: Develop &amp; Monitor Apps On AWS Lambda" property="twitter:title"/><meta content="Easily develop and monitor auto-scaling applications on AWS Lambda, API Gateway, DynamoDB, etc., with the Serverless Framework and Serverless Monitoring Dashboard." property="twitter:description"/><meta content="https://assets.serverless-extras.com/website/general/social-card-serverless-company.png" property="twitter:image"/><meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="width=device-width, initial-scale=1" name="viewport"/><link href="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/css/serverless.2ee0f13b0.min.css" rel="stylesheet" type="text/css"/><script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script><script type="text/javascript">WebFont.load({  google: {    families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"]  }});</script><!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif]--><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60ffa106b035c8bc6a4b210e_favicon%20(1).png" rel="shortcut icon" type="image/x-icon"/><link href="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60ffa127c05b4833b613eddd_webclip.png" rel="apple-touch-icon"/><link href="http://serverless.com//" rel="canonical"/><link rel="alternate" type="application/rss+xml" title="The Serverless Blog" href="https://www.serverless.com/blog/rss.xml" />
+
+<style>
+ ::selection {color: #FFFFFF; background: #fd5750;}
+  
+  * em {
+  	font-weight: inherit;
+  }
+  
+  h1 a, h2 a, h3 a, h4 a , h5 a {
+  	font-size: inherit !important;
+    line-height: inherit;
+    font-weight: inherit !important;
+  }
+  
+  .video-iframe {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+.video-iframe iframe{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+
+<!-- Added Feb 15 2022 - Steven Yi. Hotjar Tracking Code for https://serverless.com/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1036680,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+</head><body class="body"><a data-w-id="d8b07f3f-f9dc-e32c-ae47-8c0547de91fb" style="opacity:0" href="https://serverless.com/console" class="announcement w-inline-block"><div data-w-id="d8b07f3f-f9dc-e32c-ae47-8c0547de91fc" style="opacity:0" class="announcement-text">Introducing Serverless Console - Supercharged Monitoring &amp; Observability for AWS Lambda</div></a><header class="navigation-container"><div class="navigation-wrap"><div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav"><div class="navigation-full-2"><div class="navigation-container-3"><div class="navigation-left-2"><a href="/" aria-current="page" class="brand-2 w-nav-brand w--current"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60acbb950c4d66854e3e2013_logo%20serverless%20dark.svg" loading="lazy" width="150" height="23" alt="Serverless logo" class="logo-main"/></a><nav role="navigation" class="nav-menu-2 w-nav-menu"><div data-hover="true" data-delay="0" data-w-id="ec74efbe-ca0f-3d6c-9514-9e0232a1defd" class="dropdown-3 w-dropdown"><div class="dropdown-toggle-4 w-dropdown-toggle"><div class="drop-arrow-plain-2 w-icon-dropdown-toggle"></div><div class="drop-nav">Products</div></div><nav class="dropdown-list-7 w-dropdown-list"><div class="dropdown-list-full-wrapper-2"><div class="navigation-drop-container"><div class="navigation-column-2"><div class="nav-card-02"><div class="col-features"><div class="framework-nav">FRAMEWORK</div><div class="column-options"><a href="/framework" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9de50f53c3a79cd1ef_lightning.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Overview</div></a><a href="/ci-cd" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c02d638f96fe3bb7c_ci-cd.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">CI/CD</div></a><a href="/secrets" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9eae83a5b3c8e8a70b_lock.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Secrets</div></a><a href="/plugins" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9db691465d0413eab4_package.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Plugins</div></a><a href="/framework-pricing" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6387fb0ba4ac8e112aabb5ba_icon-dollar-sign.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Pricing</div></a><a href="https://dashboard.serverless.com" target="_blank" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Signup</div></a></div></div></div></div><div class="navigation-column-2"><div class="nav-card-02"><div class="col-features"><div class="framework-nav">CONSOLE</div><div class="column-options"><a href="/console" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6182addc1ae46f185d517c7f_console-icon-outline.svg" loading="lazy" width="27" alt="" class="product-icon-menu"/><div class="dark-nav-link-2">Overview</div></a><a rel="noreferrer" href="/console/pricing" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6387fb0ba4ac8e112aabb5ba_icon-dollar-sign.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Pricing</div></a><a rel="noreferrer" href="https://console.serverless.com" target="_blank" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Signup</div></a></div></div></div></div><div class="navigation-column-2"><div class="nav-card-02"><div class="col-features"><div class="framework-nav">CLOUD</div><div class="column-options"><a rel="noreferrer" href="/cloud-v2" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6122d791de9b7e0dadfb584b_cloud.svg" loading="lazy" width="27" alt="" class="product-icon-nav"/><div class="dark-nav-link">Overview</div></a><a href="/cloud/pricing" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6387fb0ba4ac8e112aabb5ba_icon-dollar-sign.svg" loading="lazy" width="27" alt="" class="product-icon-nav"/><div class="dark-nav-link">Pricing</div></a><a href="/cloud/faq" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6142cbe0f8b5ca3b46bdfa1a_question-circle.svg" loading="lazy" width="27" alt="" class="product-icon-nav"/><div class="dark-nav-link">FAQ</div></a><a rel="noreferrer" href="https://cloud.serverless.com/?view=register" target="_blank" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Signup</div></a></div></div></div></div></div></div></nav></div><div data-hover="true" data-delay="0" data-w-id="4fbf382b-a6dd-10b9-31b4-3c70e8ead09a" class="dropdown-3 w-dropdown"><div class="dropdown-toggle-4 w-dropdown-toggle"><div class="drop-arrow-plain-2 w-icon-dropdown-toggle"></div><div class="drop-nav">Docs</div></div><nav class="dropdown-list-7 w-dropdown-list"><div class="dropdown-list-full-wrapper-2"><div class="navigation-drop-container"><div class="navigation-column-2"><div class="nav-card-02"><div class="col-features"><div class="framework-nav">FRAMEWORK</div><div class="column-options"><a href="/framework/docs" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9de50f53c3a79cd1ef_lightning.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Documentation</div></a><a href="/framework/docs/getting-started" class="option-nav-head align-top w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Getting Started</div></a></div></div></div></div><div class="navigation-column-2"><div class="nav-card-02"><div class="col-features"><div class="framework-nav">CLOUD</div><div class="column-options"><a href="/cloud/docs" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6122d791de9b7e0dadfb584b_cloud.svg" loading="lazy" width="27" alt="" class="product-icon-nav"/><div class="dark-nav-link">Documentation</div></a><a href="/cloud/docs/get-started" class="option-nav-head align-top w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link">Getting Started</div></a></div></div></div></div><div class="navigation-column-2"><div class="nav-card-02 border-none"><div class="col-features"><div class="framework-nav">CONSOLE</div><div class="column-options"><a href="/console/docs" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/622a20edf56f0b09f8515ed8_icon_menu-1.svg" loading="lazy" width="27" alt="" class="product-icon-menu"/><div class="dark-nav-link-2">Documentation</div></a><a href="/console/docs" class="option-nav-head align-top w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/622a20edf56f0be4c0515ed9_icon_menu-2.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="dark-nav-link-2">Getting Started</div></a></div></div></div></div><div class="navigation-column-3"></div></div></div></nav></div><a href="/pricing" class="nav-head-link w-nav-link">Pricing</a><div data-hover="true" data-delay="0" data-w-id="590b7274-d108-088d-e9b5-00116b0480f2" class="dropdown-3 w-dropdown"><div class="dropdown-toggle-4 w-dropdown-toggle"><div class="drop-arrow-plain-2 w-icon-dropdown-toggle"></div><div class="drop-nav">Company</div></div><nav class="dropdown-list-7 w-dropdown-list"><div class="dropdown-list-full-wrapper-2"><div class="navigation-drop-container"><div class="navigation-column-small"><div class="nav-card-04"><div class="col-features"><div class="framework-nav">ABOUT US</div><div class="column-options"><a href="/about" class="option-nav-head w-inline-block"><div class="dark-nav-link">About</div></a><a rel="noopener" href="https://jobs.lever.co/serverless/" target="_blank" class="option-nav-head w-inline-block"><div class="dark-nav-link">Careers</div></a><a href="/contact" class="option-nav-head w-inline-block"><div class="dark-nav-link">Contact Us</div></a></div></div></div></div><div class="navigation-column-small"><div class="nav-card-04"><div class="col-features"><div class="framework-nav">SUPPORT</div><div class="column-options"><a href="/support" class="option-nav-head w-inline-block"><div class="dark-nav-link">Get Support</div></a></div></div></div></div><div class="navigation-column-small"><div class="nav-card-04"><div class="col-features"><div class="framework-nav">COMMUNITY</div><div class="column-options"><a rel="noreferrer" href="https://join.slack.com/t/serverless-contrib/shared_invite/zt-d5qzowja-pnOerTzAIZUrN18hWYUIHA" target="_blank" class="option-nav-head w-inline-block"><div class="dark-nav-link">Slack</div></a><a rel="noreferrer" href="https://forum.serverless.com/" target="_blank" class="option-nav-head w-inline-block"><div rel="noreferrer" class="dark-nav-link">Forum</div></a><a rel="noreferrer" href="/partners" class="option-nav-head w-inline-block"><div class="dark-nav-link">Partners</div></a><a rel="noreferrer" href="https://www.meetup.com/pro/serverless/" target="_blank" class="option-nav-head w-inline-block"><div class="dark-nav-link">Meetups</div></a></div></div></div></div><div class="navigation-column-small"><div class="nav-card-04"><div class="col-features"><div class="framework-nav">LEARN</div><div class="column-options"><a href="/blog" class="option-nav-head w-inline-block"><div class="dark-nav-link">Blog</div></a><a href="/examples" class="option-nav-head w-inline-block"><div class="dark-nav-link">Examples</div></a><a href="/guides" class="option-nav-head w-inline-block"><div class="dark-nav-link">Guides</div></a></div></div></div></div><div class="navigation-column-3"></div></div></div></nav></div></nav></div><div class="navigation-right-2"><div class="nav-functions"><a href="/sales" class="sales-and-support w-nav-link">Contact Sales</a><a href="https://app.serverless.com/" rel="noreferrer" target="_blank" class="sign-in w-nav-link">Login</a><a href="https://app.serverless.com/" rel="noreferrer" target="_blank" class="button topnav w-button">Sign Up</a></div></div></div></div></div><div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease-out" data-easing2="ease-out" role="banner" class="navigation-mob w-nav"><div class="navigation-container-mob"><a href="/" aria-current="page" class="w-nav-brand w--current"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60acbb950c4d66854e3e2013_logo%20serverless%20dark.svg" alt="Serverless logo" class="flowbase-logo"/></a><nav role="navigation" class="mobile-nav w-nav-menu"><a href="/sales" class="btn-mob-outline btn-mob-sales w-button">Sales</a><a rel="noreferrer" href="https://app.serverless.com/" class="btn-mob-outline w-button">Log in</a><a rel="noreferrer" href="https://app.serverless.com/" class="btn-mob-google w-inline-block"><div class="white-text-btn">Sign Up</div></a><div><div data-hover="false" data-delay="0" class="dropdown-6 w-dropdown"><div class="dropdown-toggle-6 w-dropdown-toggle"><div class="w-icon-dropdown-toggle"></div><div class="text-block-85">Products</div></div><nav class="dropdown-list-9 w-dropdown-list"><div class="mobile-products"><div class="footer-column"><div class="nav-product-label">FRAMEWORK</div><div class="column-options"><a href="/framework" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9de50f53c3a79cd1ef_lightning.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Overview</div></a><a href="/ci-cd" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c02d638f96fe3bb7c_ci-cd.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">CI/CD</div></a><a href="/secrets" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9eae83a5b3c8e8a70b_lock.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Secrets</div></a><a href="/plugins" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9db691465d0413eab4_package.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Plugins</div></a><a href="/framework-pricing" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6387fb0ba4ac8e112aabb5ba_icon-dollar-sign.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Pricing</div></a><a href="https://dashboard.serverless.com" target="_blank" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Signup</div></a></div></div><div class="footer-column"><div class="nav-product-label">CONSOLE</div><div class="column-options"><a href="/console" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6182addc1ae46f185d517c7f_console-icon-outline.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="link-label">Overview</div></a><a href="/console/pricing" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6387fb0ba4ac8e112aabb5ba_icon-dollar-sign.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="link-label">Pricing</div></a><a rel="noreferrer" href="https://console.serverless.com" target="_blank" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="link-label">Signup</div></a></div><div class="nav-product-label cloud">CLOUD</div><div class="column-options"><a href="/cloud-v2" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6122d791de9b7e0dadfb584b_cloud.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="link-label">Overview</div></a><a href="/cloud/faq" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6142cbe0f8b5ca3b46bdfa1a_question-circle.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="link-label">FAQ</div></a><a rel="noreferrer" href="https://cloud.serverless.com/?view=register" target="_blank" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="link-label">Signup</div></a></div></div></div></nav></div><div data-hover="false" data-delay="0" class="dropdown-6 w-dropdown"><div class="dropdown-toggle-6 w-dropdown-toggle"><div class="w-icon-dropdown-toggle"></div><div class="text-block-85">Docs</div></div><nav class="dropdown-list-9 w-dropdown-list"><div class="mobile-products tablet-flex-wrap m-wide"><div class="footer-column t-margin-right-20 m-margin-right-0"><div class="nav-product-label">FRAMEWORK</div><div class="column-options"><a href="/framework/docs" class="option-nav-head mob w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9de50f53c3a79cd1ef_lightning.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link mob">Overview</div></a><div class="w-dyn-list"><div role="list" class="w-dyn-items"><div role="listitem" class="w-dyn-item"><a href="/framework/docs/getting-started" class="option-nav-head w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link mob">Get Started</div></a></div></div></div></div></div><div class="footer-column t-margin-right-20 m-margin-right-0"><div class="nav-product-label">CLOUD</div><div class="column-options"><div class="w-dyn-list"><div role="list" class="w-dyn-items"><div role="listitem" class="w-dyn-item"><a href="/cloud/docs" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6122d791de9b7e0dadfb584b_cloud.svg" loading="lazy" width="27" alt="" class="product-icon-nav"/><div class="dark-nav-link mob">Overview</div></a></div></div></div><a href="/cloud/docs/get-started" class="option-nav-head mob w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="dark-nav-link mob">Get Started</div></a></div></div><div class="footer-column"><div class="nav-product-label">CONSOLE</div><div class="column-options"><a href="/console" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/622a20edf56f0b09f8515ed8_icon_menu-1.svg" loading="lazy" width="27" alt="" class="product-icon-nav"/><div class="dark-nav-link mob">Overview</div></a><a href="https://console.serverless.com" target="_blank" class="option-nav-head-2 mob w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/622a20edf56f0be4c0515ed9_icon_menu-2.svg" loading="lazy" alt="" class="product-icon-menu"/><div class="dark-nav-link-2 mob">Signup</div></a></div></div></div></nav></div><a href="/pricing" class="pricing-mobile">Pricing</a><div data-hover="false" data-delay="0" class="dropdown-6 w-dropdown"><div class="dropdown-toggle-6 w-dropdown-toggle"><div class="w-icon-dropdown-toggle"></div><div class="text-block-85">Company</div></div><nav class="dropdown-list-9 w-dropdown-list"><div class="products-mobile"><div class="footer-column"><div class="nav-product-label">ABOUT US</div><div class="column-options"><a rel="noopener" href="https://jobs.lever.co/serverless/" target="_blank" class="option-nav w-inline-block"><div rel="noopener" class="link-label">Careers</div></a><a href="/blog" class="option-nav w-inline-block"><div class="link-label">Blog</div></a><a href="/about" class="option-nav w-inline-block"><div class="link-label">About</div></a><a href="/partners" class="option-nav w-inline-block"><div class="link-label">Partners</div></a></div></div><div class="footer-column"><div class="nav-product-label">LEARN</div><div class="column-options"><a href="/aws-lambda" class="option-nav w-inline-block"><div class="link-label">Guides</div></a><a href="/examples" class="option-nav w-inline-block"><div class="link-label">Examples</div></a></div></div></div><div class="products-mobile"><div class="footer-column"><div class="nav-product-label">CONTACT US</div><div class="column-options"><a href="/contact" class="option-nav w-inline-block"><div class="link-label">Contact Us</div></a><a href="/support" class="option-nav w-inline-block"><div class="link-label">Premium Support</div></a></div></div><div class="footer-column"><div class="nav-product-label">COMMUNITY</div><div class="column-options"><a rel="noreferrer" href="https://join.slack.com/t/serverless-contrib/shared_invite/zt-d5qzowja-pnOerTzAIZUrN18hWYUIHA" target="_blank" class="option-nav w-inline-block"><div rel="noopener" class="link-label">Slack</div></a><a rel="noreferrer" href="https://www.meetup.com/pro/serverless/" target="_blank" class="option-nav w-inline-block"><div rel="noopener" class="link-label">Meetups</div></a><a rel="noreferrer" href="https://forum.serverless.com/" target="_blank" class="option-nav w-inline-block"><div rel="noopener" class="link-label">Forum</div></a></div></div></div></nav></div><a href="/support" class="support-nav-mob">Support</a></div></nav><div class="menu-mob w-nav-button"><div data-is-ix2-target="1" class="menu-burger" data-w-id="867a4848-ed35-d10d-bae6-c7edda48927a" data-animation-type="lottie" data-src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60ffa7a613444385cd2a3f18_menu.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="2.3333333333333335" data-duration="0"></div></div></div></div></div></header><div class="w-embed w-script"><style>
+
+body .docs-content h2[id] {
+	padding-top: 90px;
+  margin-top: -70px; 	
+ }
+body .docs-content h3[id] {
+	padding-top: 90px;
+  margin-top: -75px;
+ }
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js"></script>
+<script>
+let toc = document.getElementById('toc');
+let content = document.getElementById('content');
+let offsetsTitles = [];
+
+console.log('Server dev', Date());
+
+window.addEventListener('load', function(){
+
+	let header = document.querySelector('.navigation-container.header-2');
+    let headerHeight = 0;
+
+    if(header){
+        headerHeight = header.clientHeight;
+    }
+
+    if(toc && content){
+
+        let titles = content.querySelectorAll('h2, h3');
+        
+        if(titles && titles.length > 0){
+
+            toc.innerHTML = '<ul></ul>';
+
+            titles.forEach(function(item, index){
+
+                let title = document.createElement('li');
+                let anchorId = item.getAttribute('id');
+                title.classList.add('toc-'+item.tagName.toLowerCase());
+                if(!index){
+                    title.classList.add('toc-active');
+                }
+                title.innerHTML = '<a href="#" data-id="'+anchorId+'">'+item.innerText+'</a>';
+
+                title.querySelector('a').addEventListener('click', function(e){
+                    e.preventDefault();
+
+										// window.location.hash = '#' + anchorId;
+                    window.history.replaceState({}, '', '#' + anchorId);
+                    seamless.scrollTo(window, { behavior: "smooth", top: offsetsTitles[index] });
+                    
+                })
+
+                toc.querySelector('ul').appendChild(title);
+                
+            })
+            titles.forEach(function(item, index){
+
+                let offsetTop = item.getBoundingClientRect().top;
+								offsetsTitles.push(offsetTop + window.scrollY);
+                
+            })
+        }
+
+    }
+
+})
+
+window.addEventListener('scroll', function(){
+
+    let currentTitles = offsetsTitles.filter(item => window.scrollY + 10 > item);
+    let currentIndex = 0;
+    
+    if(currentTitles.length > 0){
+      currentIndex = currentTitles.length - 1;
+
+      let anchorId = toc.querySelectorAll('li')[currentIndex].querySelector('a').getAttribute('data-id');
+
+    }
+    
+    
+    if(toc.querySelector('.toc-active')){
+        toc.querySelector('.toc-active').classList.remove('toc-active');
+    }
+
+    if(toc.querySelectorAll('li')){
+    	toc.querySelectorAll('li')[currentIndex].classList.add('toc-active');
+    }
+
+})
+</script>
+ 
+ <style>
+.toc-h3{
+  padding-left: 20px; 
+  color: #8c8c8c;
+  line-height: 14px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-left: 2px solid #eaeaea;
+  padding-left: 27px;
+  font-family: system-ui;
+}
+  .toc-h2{
+  color: #8c8c8c;
+  line-height: 16px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-left: 2px solid #eaeaea;
+  padding-left: 15px;
+  font-family: system-ui;
+}
+
+.toc-active{
+  color: black;
+  font-size: 14px;
+  border-left: 2px solid #fd5750;
+  font-family: system-ui;
+  }
+  
+ .toc-active a{
+  color: black;
+  font-size: 14px;
+  font-family: system-ui;
+}
+
+</style></div><div class="hero-container wf-section"><div class="hero-content"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60acbb950c4d667c3a3e2025_serverless-framework-235f7e57983d270320cba8f86ec0ea65.svg" loading="lazy" height="38" width="261" data-w-id="874b3c45-030b-24c2-46c7-40d708963bc9" style="opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="Serverless Framework logo" class="serverless-framework-logo"/><div data-w-id="31d5d7fe-590f-3f87-83e8-f8f221fd8863" style="opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="home-hero-tagline">Do more with less.<br/>Serverless.</div><div data-w-id="2669bffa-d7f5-af4e-ef3f-9499193a3c70" style="opacity:0" class="home-hero-subtagline">All-in-one development solution for auto-scaling apps on AWS Lambda</div><div data-w-id="279e4400-c3ca-ca81-095a-d3bd36e7bf76" style="opacity:0" class="ctas"><a rel="noreferrer" href="https://app.serverless.com/" target="_blank" class="btn-2 lg w-inline-block"><div class="text-block-124">Deploy Now</div></a><a href="#How-It-works" class="btn-2 white lg w-inline-block"><div class="text-block-125">Learn More</div></a></div><div class="home-hero-animation"><div class="cloud-feature-video w-embed"><video 
+	width="100%" 
+  height="100%" 
+  autoplay 
+  muted
+  playsinline
+  loop>
+    <source src="https://assets.serverless-extras.com/website/general/website-home-hero.mp4" type="video/mp4">
+    Sorry, your browser doesn't support embedded videos.
+</video></div></div></div></div><div class="section light-grey wf-section"><div class="building-shape"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/61432688b65d5237f212bc24_building-shape.png" loading="lazy" sizes="(max-width: 767px) 100vw, 400px" srcset="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/61432688b65d5237f212bc24_building-shape-p-500.png 500w, https://assets-global.website-files.com/60acbb950c4d6606963e1fed/61432688b65d5237f212bc24_building-shape-p-800.png 800w, https://assets-global.website-files.com/60acbb950c4d6606963e1fed/61432688b65d5237f212bc24_building-shape.png 1200w" alt="building shape" class="image-147"/></div><div class="container quote-container w-container"><div class="columns-9 w-row"><div class="column-6 w-col w-col-6 w-col-stack"><div class="quote-light"><div class="black-stats"><div class="github-stars2"><div class="github-stars-inner"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60bf498e07e4227f25b3f674_github%201.svg" loading="lazy" width="36" height="36" alt="GitHub" class="image-5"/><div data-stats="github-stars" class="stats-black">42,140</div></div><div class="stats-info-black stats-info-github">Github Stars</div></div><div class="current-downloads2"><div class="downloads-inner"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60bf498e35f9ad24258f9299_download-save-circle.1%201.svg" loading="lazy" width="36" height="36" alt="Downloads" class="image-5"/><div data-stats="npm-downloads" class="stats-black">15,907,086</div></div><div class="stats-info-black stats-info-downloads">Downloads</div></div><div class="aws-partner"><div class="aws-inner"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6143287209997caae19acf44_aws-black.png" loading="lazy" height="35" width="46" alt="aws" class="image-145"/><div class="stats-black">Technology</div></div><div class="stats-info-black stats-info-aws-light">Partner</div></div></div><div class="quote-info"><div class="big-quote">&quot;I’m still a huge fan of  @Docker but man this @goserverless stuff is purely amazing!&quot;</div><div class="quote-author"><div class="text-block-51">@themccallister</div><div class="text-block-52">Lead Engineer, Pixel &amp; Tonic</div></div></div></div></div><div class="column-5 w-col w-col-6 w-col-stack"></div></div></div><div class="pattern-shape"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60bf4af9bb6a61c95d2d365c_dots.svg" loading="lazy" alt="" class="image-148"/></div></div><div id="How-It-works" class="s7 black home wf-section"><div class="container"><div class="steps-clone"><div class="step-block firstblock"><div class="feature-info-main"><div class="feature-info step1"><h2 class="heading-24">Develop.</h2><div class="feature-title">Zero-friction serverless development.</div><p class="feature-description"><span class="white-description">Easily define your applications as functions and events.</span><br/>Declare AWS Lambda functions and their triggers through simple abstract syntax in YAML.</p><p class="feature-description"><span class="white-description">Deploy infrastructure and code with a single command.<br/></span>AWS Lambda functions, triggers &amp; code will be deployed and wired together in the cloud, automatically.</p><p class="feature-description"><span class="white-description">Extend your use-cases and workflow with Plugins.<br/></span>Install thousands of Serverless Framework Plugins to build new serverless use-cases on AWS and integrate with other tools.</p></div></div><div class="dot"><div class="text-block-53">1</div></div><div class="content-wrap"><div class="step-content-block"><div class="step-2"><div class="text-block-26"><div class="content"><div data-w-id="997db11c-6e94-57ab-9e69-bf79bf258ec8" data-is-ix2-target="1" class="develop-animation" data-animation-type="lottie" data-src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc37b387064611931e6513_website-home-workflow-1.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="18" data-duration="0"></div></div></div></div></div></div></div><div class="step-block"><div class="scoll-wrap"><div class="scroll-animate-2"></div><div class="scroll-base"></div></div><div class="img-block"><div class="graph-img"><div data-w-id="7234d56b-3110-584e-e601-1ff83ee00fb8" data-is-ix2-target="1" class="troubleshoot" data-animation-type="lottie" data-src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc37b3009785b0eecb1f6f_website-home-workflow-2.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="9" data-duration="0"></div></div></div><div class="dot"><div class="text-block-53">2</div></div><div class="content-wrap"><div class="step-content-block tablet-paddin-left-0"><div class="step-2"><div class="feature-info"><h2 class="heading-24">Troubleshoot.</h2><div class="feature-title center">Top-tier debugging tools, built right in.</div><p class="feature-description"><span class="white-description">Metrics and alerts, out of the box.<br/></span>Track usage, performance, errors on your serverless apps with instant, powerful metrics.</p><p class="feature-description"><span class="white-description">Query and inspect every request.<br/></span>Quickly query across all AWS Lambda invocations and API Gateway requests to drill into specific issues.</p></div></div><div class="bg-shadow"></div></div></div></div><div class="step-block block3"><div class="step3-info"><div class="graph-img"><div class="feature-info step1"><h2 class="heading-24">Collaborate.</h2><div class="feature-title">Share and contribute across your entire team.</div><p class="feature-description"><span class="white-description">Manage everything in one place.<br/></span>See all of your serverless applications and their resources in one place, regardless of AWS account or region.</p><p class="feature-description"><span class="white-description">Share secrets, outputs, and AWS accounts. Securely.<br/></span>Easily share secrets, outputs from your serverless applications and delegate AWS account access.</p><p class="feature-description"><span class="white-description">Share AWS Lambda function tests.<br/></span>Share test events for your AWS Lambda functions. <br/>Stream logs and results in the Dashboard.</p></div></div></div><div class="dot"><div class="text-block-53">3</div></div><div class="content-wrap"><div class="step-content-block"><div class="step-2"><div class="text-block-26"><div class="content"><div data-w-id="36a7a434-31d5-a802-70ff-857ef884f6c6" data-is-ix2-target="1" class="collaborate" data-animation-type="lottie" data-src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc37b348bbf77e086c66ac_website-home-workflow-3.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="9" data-duration="0"></div></div></div></div><div class="bg-shadow"></div></div></div><div class="scoll-wrap"><div class="scroll-animate-2"></div><div class="scroll-base"></div></div></div></div></div></div><div class="section wf-section"><div class="container w-container"></div></div><div class="section building-quote white-bg wf-section"><div class="container building w-container"><div class="building-sky"><div class="big-quote-building">&quot;I didn&#x27;t realise #serverless was so absurdly quick and easy to use. Thanks @goserverless you&#x27;ve done an excellent job.&quot;</div><div class="quote-author"><div class="text-block-51">@DrPappa</div></div><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/614334b7f5e3c9f8cf29ada7_building-sky%20(1).png" loading="lazy" srcset="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/614334b7f5e3c9f8cf29ada7_building-sky%20(1)-p-500.png 500w, https://assets-global.website-files.com/60acbb950c4d6606963e1fed/614334b7f5e3c9f8cf29ada7_building-sky%20(1)-p-800.png 800w, https://assets-global.website-files.com/60acbb950c4d6606963e1fed/614334b7f5e3c9f8cf29ada7_building-sky%20(1)-p-1080.png 1080w, https://assets-global.website-files.com/60acbb950c4d6606963e1fed/614334b7f5e3c9f8cf29ada7_building-sky%20(1).png 1546w" sizes="(max-width: 479px) 92vw, 100vw" alt="building sky" class="quote-building"/></div></div></div><div class="section dark-bg dark-patterns wf-section"><div class="container w-container"><div class="cta-area-dark"><div class="red-delimiter"></div><h3 class="heading-25 home-closing-header"><span class="white-headline">Zero-friction serverless application development for all.</span></h3><div class="logo-customers"><div class="w-layout-grid grid-3"><div class="company"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60acbb950c4d663eef3e2030_Nordstrom_Logo_2019%20(1).svg" loading="lazy" height="13" width="274.5" alt="Nordstrom"/></div><div class="company"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60acbb950c4d6653d83e202e_Coca-Cola_logo-db465e2a889cf0f427afa8053570644d.svg" loading="lazy" height="33" width="104.5" alt="CocaCola" class="image-191"/></div><div class="company"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60acbb950c4d668ca93e2033_expedia-e24ec1322402f7cdcd6d821567660fb7.svg" loading="lazy" height="29" width="124" alt="Expedia"/></div><div class="company"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60acbb950c4d6615fc3e202f_Reuters_2008_logo-252fa71f491594d9a33c6a23462d5b43.svg" loading="lazy" height="24" width="124" alt="Reuters"/></div></div></div><p class="cloud-description">Reduce overhead, liberate innovation.</p><div class="desktop-space-60"></div><div data-w-id="3ad6a9e4-0e8c-9955-b43a-45c8da589a9d" style="opacity:0" class="container-child max-width-450"><a rel="noreferrer" href="https://app.serverless.com/" target="_blank" class="btn lg wide w-inline-block"><div class="btn-main-label btn-wide">Deploy Now</div></a><div class="desktop-space-20"></div><a href="https://serverless.com/docs" class="btn white lg wide w-inline-block"><div class="btn-main-label btn-wide">View Docs</div></a></div><div data-w-id="c067f66b-0f59-b876-67b8-cecb0050a1c1" style="opacity:0" class="long-ctas hide-copy"><a rel="noreferrer" href="https://app.serverless.com/" target="_blank" class="btn-main btn-wide w-inline-block"><div class="btn-main-label btn-wide">Deploy Now</div></a><a href="https://serverless.com/docs" class="btn-main white btn-wide w-inline-block"><div class="btn-main-label btn-wide">View Docs</div></a></div><div class="black-stats light-mode"><div class="github-stars2"><div class="github-stars-inner"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60c1fa685aab5c6b41afb3e1_github%201.svg" loading="lazy" width="36" height="36" alt="GitHub" class="image-5"/><div data-stats="github-stars" class="stats-black light-mode">41,471</div></div><div class="stats-info-black stats-info-github">Github Stars</div></div><div class="current-downloads2"><div class="downloads-inner"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60c1fa6804c5a024c0861bda_download-save-circle.1%201.svg" loading="lazy" width="36" height="36" alt="Downloads" class="image-5"/><div data-stats="npm-downloads" class="stats-black light-mode">15,907,086</div></div><div class="stats-info-black stats-info-downloads">Downloads</div></div><div class="aws-partner"><div class="aws-inner"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60c1fa681092b4952b06c172_PinClipart%201.png" loading="lazy" height="30" width="46" alt="AWS" class="image-145"/><div class="stats-black light-mode">Technology</div></div><div class="stats-info-black stats-info-aws">Partner</div></div></div></div></div></div><div class="section footer-dark wf-section"><div class="container w-container"><div class="footer-area"><div class="w-layout-grid grid-16"><div class="footer-column"><div class="nav-product-label">FRAMEWORK</div><div class="column-options"><a data-w-id="c433ca2c-41b9-ff72-d097-0f88adda9e3e" href="/framework" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9de50f53c3a79cd1ef_lightning.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Overview</div></a><a data-w-id="c433ca2c-41b9-ff72-d097-0f88adda9e46" href="/ci-cd" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c02d638f96fe3bb7c_ci-cd.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">CI/CD</div></a><a data-w-id="c433ca2c-41b9-ff72-d097-0f88adda9e4a" href="/secrets" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9eae83a5b3c8e8a70b_lock.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Secrets</div></a><a data-w-id="c433ca2c-41b9-ff72-d097-0f88adda9e4e" href="/plugins" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9db691465d0413eab4_package.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Plugins</div></a><a rel="noreferrer" href="/framework-pricing" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6387fb0ba4ac8e112aabb5ba_icon-dollar-sign.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Pricing</div></a></div></div><div class="footer-column"><div class="footer-column"><div class="nav-product-label">CONSOLE</div><div class="column-options"><a data-w-id="4cbe1399-c13f-4b41-3f4b-139b94736607" href="/console" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6182ad57cc0ef5c9d735d01a_console-icon.svg" loading="lazy" width="25" height="25" alt="" class="product-icon-nav"/><div class="link-label">Overview</div></a><a rel="noreferrer" href="/console/pricing" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/6387fb0ba4ac8e112aabb5ba_icon-dollar-sign.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Pricing</div></a><a rel="noreferrer" data-w-id="1742953f-786b-754a-ac12-92a7afaba41d" href="https://console.serverless.com" target="_blank" class="option-nav w-inline-block"><img src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/60cc4f9c480619005c5a8571_arrow-right.svg" loading="lazy" alt="" class="product-icon-nav"/><div class="link-label">Signup</div></a></div></div></div><div class="footer-column"><div class="nav-product-label">RESOURCES</div><div class="column-options"><a rel="noreferrer" href="/framework/docs" class="link-nav">Framework Docs</a><a rel="noreferrer" href="/console/docs" class="link-nav">Console Docs</a><a href="/aws-lambda" class="link-nav">Guides</a><a href="/examples" class="link-nav">Examples</a><a href="/blog" class="link-nav">Blog</a></div></div><div class="footer-column"><div class="nav-product-label">COMMUNITY</div><div class="column-options"><a rel="noopener" href="https://www.serverless.com/slack" target="_blank" class="link-nav">Slack</a><a rel="noopener" href="https://www.meetup.com/pro/serverless/" target="_blank" class="link-nav">Meetups</a><a rel="noreferrer" href="https://forum.serverless.com/" target="_blank" class="link-nav">Forum</a></div></div><div class="footer-column"><div class="nav-product-label">SUPPORT</div><div class="column-options"><a href="/contact" class="link-nav">Contact Us</a><a href="/support" class="link-nav">Premium Support</a></div></div><div class="footer-column"><div class="nav-product-label">COMPANY</div><div class="column-options"><a href="/about" class="link-nav">About</a><a rel="noopener" href="https://jobs.lever.co/serverless/" target="_blank" class="link-nav">Careers</a><a href="/partners" class="link-nav">Partners</a></div></div></div></div></div><div class="container w-container"><div class="newsletter-form"><div class="newsletter-inner"><div class="text-block-15">Join our monthly newsletter</div><div class="form-block w-form"><form id="email-form" name="email-form" data-name="Email Form" method="get" class="subscribe-form-flex"><div class="subscribe-form-input-wrapper fotter-subscribe-input-wrapper"><input type="email" class="subscribe-form-input dark-mode fotter-subscribe-input w-input" maxlength="256" name="Subscriber-Email-2" data-name="Subscriber Email 2" placeholder="Email Address" id="Subscriber-Email-2" required=""/></div><input type="submit" value="Subscribe" data-wait="Please wait..." class="submit-button w-button"/></form><div class="w-form-done"><div>Thank you! Your submission has been received!</div></div><div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div></div></div></div></div><div class="container footer-bottom w-container"><div class="w-layout-grid grid-5"><div class="footer-col"><div class="text-block-72">© 2022 Serverless, Inc. All rights reserved.</div><div class="terms"><a href="/legal/terms" class="link-3">Terms of Service</a><a href="/legal/privacy" class="link-3">Privacy Policy</a></div></div><div id="w-node-c433ca2c-41b9-ff72-d097-0f88adda9ea3-adda9e36" class="footer-col-last"><div class="div-block-5"><a rel="noopener" aria-label="Twitter" href="https://twitter.com/goserverless/" target="_blank" class="social w-button"></a><a rel="noopener" aria-label="Linkedin" href="https://www.linkedin.com/company/serverless/" target="_blank" class="social linkedin w-button"></a><a rel="noopener" aria-label="Facebook" href="https://www.facebook.com/serverless/" target="_blank" class="social fb w-button"></a><a rel="noopener" aria-label="youtube" href="https://www.youtube.com/channel/UCFYG383lawh9Hrs_DEKTtdg" target="_blank" class="social yt w-button"></a></div></div></div></div><div class="w-embed"><style>
+	a.btn {
+  	display: inline-flex;
+  }
+  a.btn-main {
+  	display: inline-flex;
+  }
+</style></div></div><div class="hubspot-style w-embed"><style>
+
+.hs-input {
+    /* display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 1px solid #ccc; */
+}
+
+
+.hs-form input.hs-input {
+		border: none;
+  	background: #282828;
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+    height: 34px;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    margin-top: 0px;
+    color: #fff;
+    font-family: "Muller","Montserrat","Open Sans",sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 0;
+    line-height: normal;
+}
+
+@media (max-width: 400px), (min-device-width: 320px) and (max-device-width: 480px){
+	.hs-form input.hs-input {
+  	width: 100% !important;
+  }
+}
+
+.hs-form label {
+		color: #7c7c7c;
+    width: 100%;
+    font-family: "Muller","Montserrat","Open Sans",sans-serif;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.hs-form .hs-error-msgs {
+	font-size: 10px;
+    color: #fd5750;
+    padding-left: 14px;
+}
+
+.hs-form .hs-error-msgs label {
+    color: #fd5750;
+	font-size: 10px;
+}
+
+.hs-form fieldset {
+	max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+.hs-form fieldset:first-of-type {
+	margin-top: 0;
+}
+.hs-form .hs_submit.hs-submit {
+	width: 100%;
+  height: 44px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.hs-form .hs_submit.hs-submit .actions {
+	width: 100%;
+}
+.hs-form [type="submit"].hs-button {
+	    width: 100%;
+    font-size: 15px;
+    padding: 13px 0px;
+    transition: width .15s ease,margin .15s ease;
+    cursor: pointer;
+    color: #fff;
+    font-family: "Muller","Montserrat","Open Sans",sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    resize: vertical;
+    background: #fd5750;
+    outline: none;
+    border: none;
+    margin: 0;
+    height: 43px;
+}
+
+.hs-form [type="submit"].hs-button:hover {
+    width: 100%;
+    margin-left: 0;
+}
+
+.hs-form textarea.hs-input {
+    background: #282828;
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    display: block;
+    min-height: 36px;
+        color: #fff;
+    font-family: "Muller","Montserrat","Open Sans",sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.hs-form fieldset.form-columns-1 .hs-input {
+	width: 100%;
+}
+
+.hs-form fieldset.form-columns-1 .input {
+	margin-right: 0;
+  margin-top: 4px;
+}
+
+.hs-form fieldset.form-columns-2 {
+	display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.hs-form fieldset.form-columns-2 .hs-form-field {
+	float: none;
+  width: 48%;
+}
+
+@media (max-width: 400px), (min-device-width: 320px) and (max-device-width: 480px){
+	.hs-form fieldset.form-columns-2 .hs-form-field {
+    float: none !important;
+    width: 48% !important;
+	}
+}
+
+.hs-form fieldset.form-columns-2 .input {
+	margin-right: 0;
+}
+
+.hs-form ul[role="checkbox"] {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-top: -4px;
+}
+
+.hs-form ul[role="checkbox"] > li {
+	margin: 10px 10px 0 0;
+}
+
+.hs-form ul[role="checkbox"] > li label {
+	margin-bottom: 0;
+}
+
+.hs-form ul[role="checkbox"] > li:last-child {
+	margin-bottom: 0;
+}
+
+.hs-form-checkbox-display {
+	position: relative;
+}
+
+.hs-form-checkbox-display .hs-input {
+	opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.hs-form-checkbox-display > span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    font-family: "Muller","Montserrat","Open Sans",sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+.hs-form-checkbox-display > span:before {
+		content: '';
+    background: #000;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #fff;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+.hs-form-checkbox-display .hs-input:checked + span:before {
+    background: #fd5750;
+    border: 1px solid #fd5750;
+}
+
+
+
+.hs-form-radio-display {
+	position: relative;
+}
+
+.hs-form-radio-display .hs-input {
+	opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.hs-form-radio-display > span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    font-family: "Muller","Montserrat","Open Sans",sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+.hs-form-radio-display > span:before {
+		content: '';
+    background: #000;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #fff;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.hs-form-radio-display .hs-input:checked + span:before {
+    background: #fd5750;
+    border: 1px solid #fd5750;
+}
+
+.submitted-message {
+    color: #fd5750;
+    font-family: "Muller","Montserrat","Open Sans",sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+.submitted-message p {
+	margin-bottom: 0;
+}
+.submitted-message p:before {
+	content: '✓';
+  margin-right: 7px;
+}
+.form-columns-1 .field {
+	width: 100%;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.hs-error-msgs {
+  position: absolute;
+  top: 100%;
+}
+
+</style></div><div class="w-embed w-script"><link rel="stylesheet" href="https://unpkg.com/smooth-scrollbar@latest/dist/smooth-scrollbar.css">
+<script src="https://unpkg.com/smooth-scrollbar@latest/dist/smooth-scrollbar.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.6.0/dist/highlightjs-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/go.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js" crossorigin="anonymous"></script>
+<script>
+  
+  function button(label, ariaLabel, icon, className) {
+    const btn = document.createElement('button');
+    btn.classList.add('hljs__copy', className);
+    btn.setAttribute('type', 'button');
+    btn.setAttribute('aria-label', ariaLabel);
+    btn.innerHTML =
+        '<strong class="hljs__copy-title">' +
+        	label +
+        '</strong>' +
+      	icon;
+    return btn;
+  }
+  
+  
+  var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+  let isMac = navigator.platform.indexOf('Mac') > -1;
+  
+  /* if(isFirefox && isMac){
+    document.querySelectorAll('pre').forEach((code, index) => {
+    	
+       code.addEventListener('copy', (event) => {
+         const toCopy = document.getSelection().toString();  
+         
+         var s = toCopy.replace(/\n\t/g, '');
+         event.clipboardData.setData('text/plain', s);
+         event.preventDefault();
+       });
+    
+    })
+  }
+  if(isFirefox && !isMac) {
+  
+  	document.querySelectorAll('pre').forEach((code, index) => {
+    	
+       code.addEventListener('copy', (event) => {
+         const toCopy = document.getSelection().toString();  
+         var s = toCopy.replace(/\r\n\t/g, '');
+         
+         event.clipboardData.setData('text/plain', s);
+         event.preventDefault();
+       });
+    
+    })
+  }*/
+  document.querySelectorAll('pre').forEach((code, index) => {
+
+    code.addEventListener('copy', (event) => {
+      let toCopy = document.getSelection().toString();  
+      
+      if(code.querySelector('code').classList.contains('short-copy')){
+        if(toCopy[0] == '$'){
+
+          toCopy = toCopy.replace(/^\D{1}/g, '');
+          toCopy = toCopy.replace(/\n+(.){1,}/gm, '');
+
+        } else if(toCopy[0] == '#'){
+
+          var arrayCopy = toCopy.split(/\n/gm);
+          toCopy = arrayCopy[1].replace(/^\D{1}/g, '');
+
+        }
+      }
+
+      var s = toCopy;
+      if(isFirefox && isMac){
+        s = toCopy.replace(/\n\t/g, '');
+      } else if(isFirefox && !isMac) {
+        s = toCopy.replace(/\r\n\t/g, '');
+      }
+
+      event.clipboardData.setData('text/plain', s);
+      event.preventDefault();
+    });
+
+  })
+
+  const clipboard = new ClipboardJS('.hljs__clipboard', {
+    target: function (trigger) {
+      return trigger.parentNode.querySelector('.hljs__copy-text');
+    },
+  });
+
+  clipboard.on('success', function (event) {
+  	// console.log(event);
+    
+    event.clearSelection();
+    const textEl = event.trigger.querySelector('.hljs__copy-title');
+    textEl.classList.add('_show');
+    setTimeout(function () {
+      textEl.classList.remove('_show');
+    }, 2000);
+    
+   
+  });
+  
+  window.addEventListener('load', function(){
+  	
+    if(window.hljs){
+      hljs.highlightAll();
+      
+      
+      const copyIcon = '<svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 7.24091H8.25C7.42157 7.24091 6.75 7.96132 6.75 8.85V16.0909C6.75 16.9796 7.42157 17.7 8.25 17.7H15C15.8284 17.7 16.5 16.9796 16.5 16.0909V8.85C16.5 7.96132 15.8284 7.24091 15 7.24091Z" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.75 12.0682H3C2.60218 12.0682 2.22064 11.8986 1.93934 11.5969C1.65804 11.2951 1.5 10.8858 1.5 10.4591V3.21818C1.5 2.79142 1.65804 2.38214 1.93934 2.08038C2.22064 1.77861 2.60218 1.60909 3 1.60909H9.75C10.1478 1.60909 10.5294 1.77861 10.8107 2.08038C11.092 2.38214 11.25 2.79142 11.25 3.21818V4.02272" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  
+      document.querySelectorAll('.hljs').forEach(function (code) {
+      
+      	if(code.clientHeight > 100){
+	      	let numbers = hljs.lineNumbersBlock(code);
+        }
+
+        let btn = button('Copied', 'Copy code to clipboard', copyIcon, 'hljs__clipboard');
+        
+        let btnSize;
+        if(code.scrollHeight > 0){
+          	btnSize = document.createElement('button');
+             btnSize.setAttribute('type', 'button');
+
+             btnSize.classList.add('hljs__size');
+             btnSize.innerHTML = '<svg data-icon="ImageResolutionMedium" aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 11 11" class="bem-Svg" style="display: block;"><path fill="currentColor" d="M10 6V1H5l1.97 1.97-4 4L1 5v5h5L4.03 8.03l4-4z"></path></svg>';
+        }
+
+        let exp = null;
+                
+        code.classList.forEach(function(item, index){
+        	if(item.length > 5){
+          	let data = item.split('-');
+            if(!exp){
+            	exp = data[1];
+            }
+          }
+        })
+        
+
+        let headerCode = document.createElement('div');
+        headerCode.classList.add('hljs__header');
+        headerCode.innerHTML = 
+           '<div class="hljs__header-dots">'+
+             '<span></span>'+
+             '<span></span>'+
+             '<span></span>'+
+           '</div>'+
+           '<div class="hljs__header-title">'+
+             
+           '</div>';
+          
+        let hljsCode = document.createElement('div');
+        hljsCode.classList.add('hljs__copy-text');
+        hljsCode.innerHTML = code.innerHTML;
+
+				if(code.scrollHeight > 400){
+        	code.parentNode.insertBefore(btnSize.cloneNode(true), code);
+        }
+  
+        code.parentNode.insertBefore(btn.cloneNode(true), code);
+        code.parentNode.appendChild(headerCode.cloneNode(true));
+        code.parentNode.insertBefore(hljsCode.cloneNode(true), code);
+        
+        setTimeout(function(){
+        	Scrollbar.init(code);
+        }, 1000);
+        
+        
+      });
+      
+      document.querySelectorAll('pre').forEach(function(pre){
+            let btnSize = pre.querySelector('.hljs__size');
+            
+            if(btnSize){
+              btnSize.addEventListener('click', function(e){
+                  let modalPre = document.querySelector('.modal._pre');
+                      modalPreContent = modalPre.querySelector('.modal__content');
+
+                      document.body.style.overflow = 'hidden';
+
+
+                  modalPre.classList.add('_show');
+                  
+                  btnSize.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">'
+                      + '<g id="close">'
+                          + '<path id="x" d="M18.717 6.697l-1.414-1.414-5.303 5.303-5.303-5.303-1.414 1.414 5.303 5.303-5.303 5.303 1.414 1.414 5.303-5.303 5.303 5.303 1.414-1.414-5.303-5.303z" fill="#FD5750"/>'
+                      + '</g>'
+                  + '</svg>'
+
+                  let preClone = pre.cloneNode(true);
+                  preClone.querySelector('.scrollbar-track-x').remove();
+                  preClone.querySelector('.scrollbar-track-y').remove();
+
+                  var el = preClone.querySelector('.scroll-content');
+                  var parent = el.parentNode;
+                  while (el.firstChild) parent.insertBefore(el.firstChild, el);
+                  parent.removeChild(el);
+
+                  preClone.querySelector('.hljs').removeAttribute('style');
+
+									if(modalPreContent){
+                  	modalPreContent.innerHTML = '<pre>' + preClone.innerHTML + '</pre>';
+
+                    modalPreContent.querySelector('.hljs__size').addEventListener('click', function(){
+                        modalPre.classList.remove('_show');
+                        document.body.style.overflow = 'auto';
+                        btnSize.innerHTML = '<svg data-icon="ImageResolutionMedium" aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 11 11" class="bem-Svg" style="display: block;"><path fill="currentColor" d="M10 6V1H5l1.97 1.97-4 4L1 5v5h5L4.03 8.03l4-4z"></path></svg>';
+                      	modalPreContent.innerHTML = '';
+                    })
+                  }
+
+              })
+            }
+         })
+    }
+  
+  })
+    
+    document.body.addEventListener('keyup', function(e) {
+      if (e.key == "Escape") {
+      	if(document.querySelector('.modal._pre').classList.contains('_show')){
+        	let modalPre = document.querySelector('.modal._pre');
+          modalPreContent = modalPre.querySelector('.modal__content');
+          modalPre.classList.remove('_show');
+          document.body.style.overflow = 'auto';
+          document.querySelectorAll('pre .hljs__size').forEach(function(btnSize){
+	          btnSize.innerHTML = '<svg data-icon="ImageResolutionMedium" aria-hidden="true" focusable="false" width="11" height="11" viewBox="0 0 11 11" class="bem-Svg" style="display: block;"><path fill="currentColor" d="M10 6V1H5l1.97 1.97-4 4L1 5v5h5L4.03 8.03l4-4z"></path></svg>';
+          })
+          modalPreContent.innerHTML = '';
+        }
+      }
+    });
+</script>
+<div class="modal _pre">
+        <div class="modal__wrap">
+            <div class="modal__content"></div>
+        </div>
+    </div></div><div class="w-embed"><style>
+
+.modal._pre {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+        bottom: 0;
+        z-index: 1000;
+        transform: translate(0%,0);
+        display: none;
+    }
+    .modal._pre._show {
+    	display: block;
+    }
+    .modal._pre .modal__wrap,
+    .modal._pre .modal__content {
+        width: 100%;
+        height: 100%;
+    }
+    .modal._pre .modal__content pre {
+        margin: 0;
+        height: 100%;
+    }
+
+    .modal._pre .modal__content code.hljs {
+        height: 100%;
+    }
+    
+    .modal._pre .modal__content pre code.hljs {
+    	max-height: 100%;
+    }
+    
+    .modal._pre .hljs__header {
+    	border-radius: 0;
+    }
+    
+    .modal._pre pre {
+    	border-radius: 0;
+    }
+    
+    .modal._pre code {
+    	border-radius: 0;
+    }
+    
+    .modal._pre .hljs__size {
+    	opacity: 1;
+      right: 5px;
+      top: 8px;
+    }
+    
+     .hljs__size {
+        position: absolute;
+        right: 12px;
+        color: #fff;
+        top: 14px;
+        z-index: 20;
+        background: none;
+	    opacity: .4;
+    }
+    
+
+pre {
+	position: relative;
+}
+
+body .hljs__header {
+	position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1E1F1C;
+  border: 1px solid #444444;
+  box-sizing: border-box;
+  border-radius: 16px 16px 0px 0px;
+	height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+body .hljs__header-dots {
+	display: flex;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  top: 14px;
+}
+
+body .hljs__header-dots span {
+	width: 12px;
+  height: 12px;
+  background: #8C8C8C;
+  border: 1px solid #8C8C8C;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+body .hljs__header-title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 170%;
+  color: #8C8C8C;
+}
+
+body pre .hljs__copy {
+	position: absolute;
+  right: 12px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  z-index: 20;
+}
+
+body pre .hljs__size + .hljs__copy {
+	right: 40px;
+}
+
+body pre .hljs__copy-title {
+	opacity: 0;
+  margin-right: 10px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1;
+  transition: all .2s;
+}
+
+body pre .hljs__copy-title._show {
+	opacity: 1;
+}
+
+body pre code.hljs {
+	/* max-height: 400px; */
+}
+
+body pre code.hljs {
+	padding: 55px 50px 15px 22px;
+}
+
+body pre code.hljs tr {
+	background: none;
+  border: none;
+  margin: 0;
+}
+
+body pre code.hljs tr td.hljs-ln-numbers {
+	padding-right: 30px;
+  color: #404040;
+}
+
+body pre code.hljs tr:nth-child(even) {
+	background: none;
+}
+
+body pre code.hljs table {
+	margin: 0;
+}
+
+body .hljs {
+	position: relative;
+	background: #000000;
+  border: 1px solid #444444;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 55px 50px 15px 22px;
+  font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+body .hljs .hljs-attribute, 
+body .hljs .hljs-doctag, 
+body .hljs .hljs-keyword, 
+body .hljs .hljs-meta .hljs-keyword, 
+body .hljs .hljs-name, 
+body .hljs .hljs-selector-tag {
+	font-weight: normal;
+}
+
+body .hljs .hljs-keyword {
+	color: #FD5750;
+}
+
+body .hljs .hljs-link, 
+body .hljs .hljs-operator, 
+body .hljs .hljs-regexp, 
+body .hljs .hljs-selector-attr, 
+body .hljs .hljs-selector-pseudo, 
+body .hljs .hljs-symbol, 
+body .hljs .hljs-template-variable, 
+body .hljs .hljs-variable {
+	color: #fff;
+}
+
+body .hljs .hljs-section, 
+body .hljs .hljs-title {
+	color: #fff;
+}
+
+body .hljs .hljs-deletion, 
+body .hljs .hljs-number, 
+body .hljs .hljs-quote, 
+body .hljs .hljs-selector-class, 
+body .hljs .hljs-selector-id, 
+body .hljs .hljs-string, 
+body .hljs .hljs-template-tag, 
+body .hljs .hljs-type {
+	color: #fff;
+}
+
+body .hljs .hljs-comment,
+body .hljs .hljs-punctuation, 
+body .hljs .hljs-tag{
+	color: #666;
+}
+
+body .hljs .hljs-literal {
+	color: #fff;
+}
+
+body .hljs .hljs-meta {
+	color: #fff;
+}
+
+body .hljs .hljs-addition, 
+body .hljs .hljs-built_in, 
+body .hljs .hljs-bullet, 
+body .hljs .hljs-code,
+body .hljs-tag .hljs-attr,
+body .hljs-tag .hljs-name{
+	color: #fff;
+}
+
+@media screen and (min-width: 769px){
+
+body .table-of-content-doc {
+	max-height: calc(100vh - 130px);
+  overflow: auto;
+}
+
+}
+
+body .hljs__copy-text {
+
+position: fixed;
+left: -100vw;
+top: -100vw;
+opacity: 0;
+pointer-events: none;
+
+}
+
+body pre {
+	border-radius: 16px;
+}
+
+body pre code.hljs .scrollbar-track {
+	opacity: 1;
+	transition: opacity 0.5s 0 ease-out;
+}
+
+body pre code.hljs .scrollbar-thumb {
+	background: rgba(0, 0, 0, .3);
+}
+
+body pre code.hljs .scrollbar-track {
+	background: #ddd;
+}
+
+body pre code.hljs:hover .scrollbar-track {
+	opacity: 1;
+}
+
+
+*:not(pre) code {
+  background-color: rgba(0,0,0,.05);
+  border-radius: .15rem;
+  padding: 0 .15rem;
+  font-size: .9em;
+}
+
+
+/* .modal._pre {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+        bottom: 0;
+        z-index: 1000;
+        transform: translate(0%,0);
+        display: none;
+    }
+    .modal._pre._show {
+    	display: block;
+    }
+    .modal._pre .modal__wrap,
+    .modal._pre .modal__content {
+        width: 100%;
+        height: 100%;
+    }
+    .modal._pre .modal__content pre {
+        margin: 0;
+        height: 100%;
+    }
+
+    .modal._pre .modal__content code.hljs {
+        height: 100%;
+    }
+    
+    .modal._pre .modal__content pre code.hljs {
+    	max-height: 100%;
+    }
+    
+    .modal._pre .hljs__header {
+    	border-radius: 0;
+    }
+    
+    .modal._pre pre {
+    	border-radius: 0;
+    }
+    
+    .modal._pre code {
+    	border-radius: 0;
+    }
+    
+    .modal._pre .hljs__size {
+    	opacity: 1;
+      right: 5px;
+      top: 8px;
+    }
+    
+    .modal._pre .hljs__copy {
+    	right: 40px;
+    }
+    
+     .hljs__size {
+        position: absolute;
+        right: 12px;
+        color: #fff;
+        top: 14px;
+        z-index: 20;
+        background: none;
+	    opacity: .4;
+    }
+    
+
+    body pre {
+	position: relative;
+}
+
+body .hljs__header {
+	position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1E1F1C;
+  border: 1px solid #444444;
+  box-sizing: border-box;
+  border-radius: 16px 16px 0px 0px;
+	height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+
+body .hljs__header-dots {
+	display: flex;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  top: 14px;
+}
+
+body .hljs__header-dots span {
+	width: 12px;
+  height: 12px;
+  background: #8C8C8C;
+  border: 1px solid #8C8C8C;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+body .hljs__header-title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 170%;
+  color: #8C8C8C;
+}
+
+body pre .hljs__copy {
+	position: absolute;
+  right: 12px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  z-index: 20;
+}
+
+body pre.-modal .hljs__copy {
+	right: 40px;
+}
+
+body pre .hljs__copy-title {
+	opacity: 0;
+  margin-right: 10px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1;
+  transition: all .2s;
+}
+
+body pre .hljs__copy-title._show {
+	opacity: 1;
+}
+
+body pre code.hljs {
+	padding: 55px 50px 15px 22px;
+}
+
+body pre code.hljs tr {
+	background: none;
+  border: none;
+  margin: 0;
+}
+
+body pre code.hljs tr td.hljs-ln-numbers {
+	padding-right: 30px;
+  color: #404040;
+}
+
+body pre code.hljs tr:nth-child(even) {
+	background: none;
+}
+
+body pre code.hljs table {
+	margin: 0;
+}
+
+body .hljs {
+	position: relative;
+	background: #000000;
+  border: 1px solid #444444;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 55px 50px 15px 22px;
+  font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+body .hljs .hljs-attribute, 
+body .hljs .hljs-doctag, 
+body .hljs .hljs-keyword, 
+body .hljs .hljs-meta .hljs-keyword, 
+body .hljs .hljs-name, 
+body .hljs .hljs-selector-tag {
+	font-weight: normal;
+}
+
+body .hljs .hljs-keyword {
+	color: #FD5750;
+}
+
+body .hljs .hljs-link, 
+body .hljs .hljs-operator, 
+body .hljs .hljs-regexp, 
+body .hljs .hljs-selector-attr, 
+body .hljs .hljs-selector-pseudo, 
+body .hljs .hljs-symbol, 
+body .hljs .hljs-template-variable, 
+body .hljs .hljs-variable {
+	color: #fff;
+}
+
+body .hljs .hljs-section, 
+body .hljs .hljs-title {
+	color: #fff;
+}
+
+body .hljs .hljs-deletion, 
+body .hljs .hljs-number, 
+body .hljs .hljs-quote, 
+body .hljs .hljs-selector-class, 
+body .hljs .hljs-selector-id, 
+body .hljs .hljs-string, 
+body .hljs .hljs-template-tag, 
+body .hljs .hljs-type {
+	color: #fff;
+}
+
+body .hljs .hljs-comment,
+body .hljs .hljs-punctuation, 
+body .hljs .hljs-tag{
+	color: #666;
+}
+
+body .hljs .hljs-literal {
+	color: #fff;
+}
+
+body .hljs .hljs-meta {
+	color: #fff;
+}
+
+body .hljs .hljs-addition, 
+body .hljs .hljs-built_in, 
+body .hljs .hljs-bullet, 
+body .hljs .hljs-code {
+	color: #fff;
+}
+
+@media screen and (min-width: 769px){
+
+    body .table-of-content-doc {
+	max-height: calc(100vh - 130px);
+  overflow: auto;
+}
+
+}
+
+body .hljs__copy-text {
+
+position: fixed;
+left: -100vw;
+top: -100vw;
+opacity: 0;
+pointer-events: none;
+
+}
+
+body pre {
+	border-radius: 16px;
+}
+
+body pre code.hljs .scrollbar-track {
+	opacity: 1;
+	transition: opacity 0.5s 0 ease-out;
+}
+
+body pre code.hljs .scrollbar-thumb {
+	background: rgba(0, 0, 0, .3);
+}
+
+body pre code.hljs .scrollbar-track {
+	background: #ddd;
+}
+
+body body pre code.hljs:hover .scrollbar-track {
+	opacity: 1;
+} */
+
+</style></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=60acbb950c4d6606963e1fed" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://assets-global.website-files.com/60acbb950c4d6606963e1fed/js/serverless.a32f5c5a5.js" type="text/javascript"></script><!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]--><!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2901603.js"></script>
+<!-- End of HubSpot Embed Code -->
+
+<script>
+  gtag('config', 'UA-79510184-1');
+</script>
+
+<script>
+    /**
+  * HUBSPOT: Set attribution based on page type
+  */
+  var _hsq = window._hsq = window._hsq || [];
+  var path = window.location.pathname;
+  
+  // default content
+  var attributionContent = 'standard-page';
+  
+  // Blog content
+  if(path.startsWith('/blog')) attributionContent = 'blog-post';
+  
+  // Docs content
+  if(path.startsWith('/framework/docs')) attributionContent = 'knowledge-article';
+  if(path.startsWith('/cloud/docs')) attributionContent = 'knowledge-article';
+  if(path.startsWith('/console/docs')) attributionContent = 'knowledge-article';
+  
+  // Push to Hubspot
+  console.log('Hubspot Attribution: ', attributionContent)
+  _hsq.push(['setContentType', attributionContent]);
+  
+  /**
+  * End Hubspot
+  */
+  
+  window.addEventListener('load', function(){
+  	
+    let contentIframes = document.querySelectorAll('#content iframe');
+    
+    contentIframes.forEach(function(item, index){
+    	let src = item.getAttribute('src');
+      
+    	if(src.indexOf('youtube') > 0){
+          let wrapperVideo = document.createElement('div');
+          wrapperVideo.classList.add('video-iframe');
+          item.parentNode.insertBefore(wrapperVideo, item);
+          wrapperVideo.appendChild(item);        	
+        }
+    })
+    
+  })
+  
+</script></body></html>
