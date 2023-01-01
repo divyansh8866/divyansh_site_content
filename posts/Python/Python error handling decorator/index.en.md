@@ -13,7 +13,7 @@ resources:
   src: "featured-image.jpg"
 
 tags: ["python"]     # <<< Change here
-categories: ["Python"]               # <<< Change here
+categories: ["python"]               # <<< Change here
 
 lightgallery: true
 
